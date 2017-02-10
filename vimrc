@@ -149,6 +149,7 @@ Bundle 'vim-scripts/minibufexpl.vim'
 Bundle 'tristen/vim-sparkup'
 Bundle 'mattn/emmet-vim'
 Bundle 'Shougo/neocomplcache.vim'
+" surround  vee S"  一个单词会双引号引住了  例: bb  变成  "bb"
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-rails.git'
 Bundle 'vim-scripts/tComment'
@@ -412,7 +413,8 @@ set ruler
 " {N}gt   gt下一标签 gT上一标签
 "set pastetoggle=<f5>
 "录制宏 q  @a  @@      按q 宏名  再按q录制结束 
-"  :let i=1       :let i += 1
+"  :let i=1  qa I<c-r>=i<CR>)<Esc>     :let i += 1 q    执行宏    :normal @a 每一行执行这个宏
+" c-r  执行输入 一般插入模式下
 
 
 
@@ -425,7 +427,7 @@ nmap    w.  :vertical resize +3<CR>
 	
 "ZZ   # → 快捷键，保存修改并推出  
 "u撤消  ctrl + r # → 返回上一步  
-"f查找字符
+"f查找字符 F反向上一个 t正向下一个 T正向下一个  ;重复上次   ,反转方向上次 
 
 
 
@@ -455,6 +457,23 @@ nmap    w.  :vertical resize +3<CR>
 
 "q       # 关闭 NerdTree 窗口
 "?       # 切换是否显示 Quick Help
+
+"ex模式 1第一行 .所在行 '< 高亮起始行  '> 高亮选区结束行 %整个文件
+" *按钮 文件中的所有单词高亮
+
+
+"ESC=ctrl-["
+
+"gu小写 gU大写 g~反转大小写"
+"v模式"
+"v面向字符 V面向行 c-v面向列块 gv重选上次的高亮选区"
+
+"[寄存器]
+"复制专用寄存器 "0  y之后  "0p  会把复制的内容粘出来 ，即使按了d删除   字符寄存器：a~z   例以a为寄存名：  "ayiw   "aP  
+" "%当前文件名 "#轮换文件名 ".上次插入的文本 ": 上次执行的Ex命令 "/上次查找的模式
+" "+ 剪贴板 剪复制粘贴操作  "* 主剪贴板 用鼠标中键操作
+
+
 
 
 	

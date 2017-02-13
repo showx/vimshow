@@ -51,8 +51,10 @@ filetype plugin indent on
 "在缩进和遇到 Tab 键时使用空格替代
 set expandtab
 "根据文件类型设置缩进格式
-au FileType tpl,html,python,vim,javascript setl shiftwidth=2
-au FileType tpl,html,python,vim,javascript setl tabstop=2
+"没匹配的情况，默认用4个空格,FileType不是指文件扩展名
+set tabstop=4
+au FileType tpl,html,python,vim,javascript,js setl shiftwidth=2
+au FileType tpl,html,python,vim,javascript,js setl tabstop=2
 au FileType java,php setl shiftwidth=4
 au FileType java,php setl tabstop=4
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP

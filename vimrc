@@ -52,6 +52,7 @@ filetype plugin indent on
 set expandtab
 "根据文件类型设置缩进格式
 "没匹配的情况，默认用4个空格,FileType不是指文件扩展名
+set shiftwidth=4
 set tabstop=4
 au FileType tpl,html,python,vim,javascript,js setl shiftwidth=2
 au FileType tpl,html,python,vim,javascript,js setl tabstop=2
@@ -61,7 +62,7 @@ autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 
 set expandtab "把tab换成空格
 "然后把下面的命令加入到.vimrc中：
-"autocmd FileType c,cpp set shiftwidth=4 | set expandtab
+"autocmd FileType c,cpp set shiftwidth=4
 
 
 "启动vim时不要自动折叠代码
@@ -152,6 +153,7 @@ Bundle 'tristen/vim-sparkup'
 Bundle 'mattn/emmet-vim'
 Bundle 'Shougo/neocomplcache.vim'
 " surround  vee S"  一个单词会双引号引住了  例: bb  变成  "bb"
+" ysiw" 对文字两边加双引号  cs"'改变双引号为单引号  ds删除  vee选择好字之后   S"选中的文本加"
 Bundle 'tpope/vim-surround'
 Bundle 'tpope/vim-rails.git'
 Bundle 'vim-scripts/tComment'
@@ -160,38 +162,9 @@ Bundle 'vim-airline/vim-airline'
 "php格式化
 "Bundle 'clbustos/PHP_Beautifier' vimpress
 "map <C-b> :% ! php_beautifier --filters "phpBB() EqualsAlign() ArrayNested()"<CR>
-	
 
-
-
-"Bundle 'L9'  
-"Bundle 'nerdtree'
-"Bundle 'winmanager'
-"格式化工具 :Tab \=  :TAb \.
-"Bundle 'tabular'
-"插件管理  
-"Bundle 'vundle' 
-"Bundle 'matchit'
-"Bundle 'OmniCppComplete'
-"Bundle 'FuzzyFinder'
-"Bundle 'minibufexplorerpp'
-"Bundle 'minibufexpl.vim'
-"Bundle 'taglist'
-"ack命令插件
-"Bundle 'ack'  
-"项目管理插件
-"Bundle 'project'
-"Bundle 'sparkup'
-"Bundle 'emmet-vim'
-"zendcoding html:4s  "Ctrl"再按下 “y” 和“，” "
-"Bundle 'neocomplcache'
-"Bundle 'php-doc.vim'
-" ysiw" 对文字两边加双引号  cs"'改变双引号为单引号  ds删除  vee选择好字之后   S"选中的文本加"
-"Bundle 'surround'
 
 "Vundle、NeoBundle、Pathogen 等直接安装使用。且为各个版本打了 tag， NeoBundle 可以很方便的指定安装特定版本的中文文档。
-
-
 
 if &term=="xterm"
   set t_Co=8
@@ -275,8 +248,8 @@ let Tlist_Ctags_Cmd="/usr/local/bin/ctags"
 let Tlist_Show_One_File=1
 let Tlist_Exit_OnlyWindow=1
 "let Tlist_Use_Right_Window=1
-"TlistOpen 启动就开启
 "let Tlist_Auto_Open=1
+":TlistOpen :TlistClose :TlistToggle
 
 "保存文件运行ctags -R
 ":autocmd BufWritePost * call system("ctags -R")
@@ -285,41 +258,29 @@ let Tlist_Exit_OnlyWindow=1
 let NERDTreeMouseMode = 3
 
 "设置nmap管理
+"要在winManager使用 nerdtree ,加上以下代码
+let g:NERDTree_title='NERD Tree'  
+function! NERDTree_Start()  
+    exec 'NERDTree'  
+endfunction  
+function! NERDTree_IsValid()  
+    return 1  
+	endfunction  
 "NERDTreeToggle  NERDTree  TagList
-let g:winManagerWindowLayout = "NERDTree|TagList,BufExplorer" 
+"let g:winManagerWindowLayout = "NERDTree|TagList,BufExplorer" 
+let g:winManagerWindowLayout = "NERDTree,BufExplorer" 
 "|TagList,自己喜欢 taglist在左边就好
 "let g:winManagerWidth = 50
 "let g:defaultExplorer
 let g:AutoOpenWinManager = 1
 
 nmap wm :WMToggle
+nmap tl :TlistOpen
 "au VimEnter *:WMOpen
 "au VimEnter *:WMToggle
 
-
-"要在winManager使用 nerdtree ,加上以下代码
-let g:NERDTree_title='NERD Tree'  
-"let g:winManagerWindowLayout='NERDTree|TagList,Tarbar'  
-function! NERDTree_Start()  
-    exec 'NERDTree'  
-endfunction  
-  
-function! NERDTree_IsValid()  
-    return 1  
-endfunction  
-
-
 "自动退出Winmanager
 autocmd bufenter * if (winnr("$") == 2 && exists("b:NERDTreeType") &&b:NERDTreeType == "primary")  | qa | endif
-
-
-"function! <SID>ToggleWindowsManager()  
-"    if IsWinManagerVisible()  
-"        call s:CloseWindowsManager()  
-"    else  
-"        call s:StartWindowsManager()  
-"    end  
-"endfunction  
   
 function! <SID>ToggleWindowsManager()  
     if IsWinManagerVisible()  
@@ -418,8 +379,6 @@ set ruler
 "  :let i=1  qa I<c-r>=i<CR>)<Esc>     :let i += 1 q    执行宏    :normal @a 每一行执行这个宏
 " c-r  执行输入 一般插入模式下
 
-
-
 "调整窗口大小,方便使用
 nmap    w=  :resize +3<CR>
 nmap    w-  :resize -3<CR>
@@ -430,9 +389,6 @@ nmap    w.  :vertical resize +3<CR>
 "ZZ   # → 快捷键，保存修改并推出  
 "u撤消  ctrl + r # → 返回上一步  
 "f查找字符 F反向上一个 t正向下一个 T正向下一个  ;重复上次   ,反转方向上次 
-
-
-
 
 "NERDTree
 "中键    对文件相当于 NERDTree-i，对目录相当于 NERDTree-e
@@ -463,7 +419,6 @@ nmap    w.  :vertical resize +3<CR>
 "ex模式 1第一行 .所在行 '< 高亮起始行  '> 高亮选区结束行 %整个文件
 " *按钮 文件中的所有单词高亮
 
-
 "ESC=ctrl-["
 
 "gu小写 gU大写 g~反转大小写"
@@ -475,7 +430,11 @@ nmap    w.  :vertical resize +3<CR>
 " "%当前文件名 "#轮换文件名 ".上次插入的文本 ": 上次执行的Ex命令 "/上次查找的模式
 " "+ 剪贴板 剪复制粘贴操作  "* 主剪贴板 用鼠标中键操作
 
-
+"=======格式化小技巧======="
+"1) 按两下小写g，即gg，定位光标到第一行。
+"2) 按住Shift+v，即大写V，进入可视化编辑的列编辑模式。
+"3) Shift+g，即大写G，选中整个代码。
+"4) 按下等号=，格式化所有代码。
 
 
 	

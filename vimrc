@@ -422,11 +422,11 @@ nmap    w.  :vertical resize +3<CR>
 "ESC=ctrl-["
 
 "gu小写 gU大写 g~反转大小写"
-"v模式"
+"v模式" 
 "v面向字符 V面向行 c-v面向列块 gv重选上次的高亮选区"
 
 "[寄存器]
-"复制专用寄存器 "0  y之后  "0p  会把复制的内容粘出来 ，即使按了d删除   字符寄存器：a~z   例以a为寄存名：  "ayiw   "aP  
+"[复制]专用寄存器 "0  y之后  "0p  会把复制的内容粘出来 ，即使按了d删除   字符寄存器：a~z   例以a为寄存名：  "ayiw   "aP  
 " "%当前文件名 "#轮换文件名 ".上次插入的文本 ": 上次执行的Ex命令 "/上次查找的模式
 " "+ 剪贴板 剪复制粘贴操作  "* 主剪贴板 用鼠标中键操作
 
@@ -435,6 +435,12 @@ nmap    w.  :vertical resize +3<CR>
 "2) 按住Shift+v，即大写V，进入可视化编辑的列编辑模式。
 "3) Shift+g，即大写G，选中整个代码。
 "4) 按下等号=，格式化所有代码。
+
+"Quickfix
+" :cnext cprev :cfirst :clast :cnfile :cpfile :cc N :copen打开quickfix窗口 :cclose 关闭quickfix窗口
+
+"vim默认使用netrw管理文件  :edit  :e.  打开文件管理器，当前工作目录vv  :Explore :E 文件管理器，缓存区所在目录
+
 
 
 	
